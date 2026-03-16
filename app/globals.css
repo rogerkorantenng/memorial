@@ -21,3 +21,27 @@
     @apply text-sm text-accent hover:underline transition-colors;
   }
 }
+
+/* Swiper overrides */
+.gallery-carousel .swiper-button-next,
+.gallery-carousel .swiper-button-prev {
+  color: #e0d5c1;
+  background: rgba(0, 0, 0, 0.5);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.gallery-carousel .swiper-button-next::after,
+.gallery-carousel .swiper-button-prev::after {
+  font-size: 14px;
+}
+
+.gallery-carousel .swiper-pagination-bullet {
+  background: #2a2a3e;
+  opacity: 1;
+}
+
+.gallery-carousel .swiper-pagination-bullet-active {
+  background: #2d8a4e;
+}
