@@ -45,3 +45,93 @@
 .gallery-carousel .swiper-pagination-bullet-active {
   background: #2d8a4e;
 }
+
+/* Premium design upgrades */
+body {
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(42, 42, 62, 0.3) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Decorative section divider */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a96e, transparent);
+}
+
+/* Ornamental heading style */
+.ornamental-heading {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.ornamental-heading h2,
+.ornamental-heading h1 {
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #e0d5c1;
+  margin-bottom: 0.5rem;
+}
+
+.ornamental-heading .subtitle-text {
+  font-size: 0.8rem;
+  color: #8888aa;
+  font-style: italic;
+}
+
+/* Card glow on hover */
+.card-glow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-glow:hover {
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Quote styling */
+.quote-mark {
+  font-family: Georgia, serif;
+  font-size: 3rem;
+  line-height: 1;
+  color: #c9a96e;
+  opacity: 0.4;
+}
+
+/* Initial avatar */
+.initial-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
+  border: 1px solid #c9a96e33;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-playfair), serif;
+  font-size: 0.875rem;
+  color: #c9a96e;
+  flex-shrink: 0;
+}
+
+/* Portrait glow */
+.portrait-glow {
+  box-shadow: 0 0 40px rgba(201, 169, 110, 0.15), 0 0 80px rgba(201, 169, 110, 0.05);
+}
+
+/* Gold accent border */
+.gold-border-left {
+  border-left: 2px solid #c9a96e44;
+}

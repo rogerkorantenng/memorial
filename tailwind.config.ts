@@ -15,6 +15,7 @@ const config: Config = {
         "text-body": "#8888aa",
         "text-muted": "#555555",
         accent: "#2d8a4e",
+        gold: "#c9a96e",
       },
       fontFamily: {
         serif: ["var(--font-playfair)", "serif"],
