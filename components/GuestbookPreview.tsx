@@ -4,11 +4,25 @@ import { supabaseServer } from "@/lib/supabase-server";
 import { timeAgo } from "@/lib/utils";
 
 export default async function GuestbookPreview() {
-  const { data: entries } = await supabaseServer
-    .from("guestbook_entries")
-    .select("id, name, relationship, message, created_at")
-    .order("created_at", { ascending: false })
-    .limit(3);
+  let entries: Array<{
+    id: string;
+    name: string;
+    relationship: string;
+    message: string;
+    created_at: string;
+  }> | null = null;
+
+  try {
+    const { data } = await supabaseServer
+      .from("guestbook_entries")
+      .select("id, name, relationship, message, created_at")
+      .order("created_at", { ascending: false })
+      .limit(3);
+    entries = data;
+  } catch {
+    // Supabase not configured yet — skip preview
+    return null;
+  }
 
   if (!entries || entries.length === 0) {
     return null;
