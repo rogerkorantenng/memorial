@@ -14,14 +14,15 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   return (
-    <section className="py-12 sm:py-16 px-4">
+    <section className="py-16 sm:py-24 px-4">
       <div className="max-w-content mx-auto">
-        <h1 className="font-serif text-2xl sm:text-3xl text-text-primary uppercase tracking-[3px] mb-2 text-center">
-          Gallery
-        </h1>
-        <p className="text-text-body text-sm text-center mb-10">
-          Cherished moments and memories
-        </p>
+        <div className="ornamental-heading mb-10">
+          <h1>Gallery</h1>
+          <div className="section-divider">
+            <span className="text-gold/40 text-xs">✦</span>
+          </div>
+          <p className="subtitle-text">Cherished moments and memories</p>
+        </div>
         <GalleryGrid />
       </div>
     </section>

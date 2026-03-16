@@ -18,10 +18,12 @@ export default function GalleryCarousel() {
 
   return (
     <ScrollFadeIn>
-      <section className="py-12 sm:py-16 px-4 border-t border-bg-subtle">
+      <section className="py-16 sm:py-24 px-4 border-t border-bg-subtle/50">
         <div className="max-w-content mx-auto">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="section-label">Gallery</h2>
+          <div className="flex items-center justify-between mb-8">
+            <div className="ornamental-heading text-left !mb-0">
+              <h2>Gallery</h2>
+            </div>
             <Link href="/gallery" className="view-all-link">
               View All →
             </Link>

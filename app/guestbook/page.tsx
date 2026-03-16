@@ -14,14 +14,15 @@ export const metadata: Metadata = {
 
 export default function GuestbookPage() {
   return (
-    <section className="py-12 sm:py-16 px-4">
+    <section className="py-16 sm:py-24 px-4">
       <div className="max-w-2xl mx-auto">
-        <h1 className="font-serif text-2xl sm:text-3xl text-text-primary uppercase tracking-[3px] mb-2 text-center">
-          Guestbook
-        </h1>
-        <p className="text-text-body text-sm text-center mb-10">
-          Share your memories, stories, and condolences
-        </p>
+        <div className="ornamental-heading mb-10">
+          <h1>Guestbook</h1>
+          <div className="section-divider">
+            <span className="text-gold/40 text-xs">✦</span>
+          </div>
+          <p className="subtitle-text">Share your memories, stories, and condolences</p>
+        </div>
         <GuestbookList />
       </div>
     </section>

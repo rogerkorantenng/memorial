@@ -17,7 +17,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-bg-primary/95 backdrop-blur-sm border-b border-bg-subtle">
       <div className="max-w-content mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-        <Link href="/" className="font-serif text-text-primary text-sm sm:text-base">
+        <Link href="/" className="font-serif text-text-primary text-sm sm:text-base tracking-wider">
           {siteConfig.siteTitle}
         </Link>
 
@@ -36,7 +36,7 @@ export default function Header() {
             href={siteConfig.paystackLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-accent text-white px-4 py-2 rounded text-sm font-medium hover:bg-accent/90 transition-colors"
+            className="bg-accent text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-accent/90 hover:shadow-lg hover:shadow-accent/20 transition-all"
           >
             Donate
           </a>
