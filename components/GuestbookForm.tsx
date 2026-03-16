@@ -61,8 +61,8 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-bg-card rounded-lg p-6 mb-8">
-      <h3 className="font-serif text-text-primary text-lg mb-4">
+    <form onSubmit={handleSubmit} className="bg-bg-card/60 rounded-xl p-6 sm:p-8 mb-8 border border-bg-subtle/50">
+      <h3 className="font-serif text-text-primary text-lg mb-6">
         Leave a Message
       </h3>
 
@@ -136,7 +136,7 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-accent text-white px-6 py-2 rounded text-sm font-medium hover:bg-accent/90 transition-colors disabled:opacity-50"
+          className="bg-accent text-white px-8 py-2.5 rounded-lg text-sm font-medium hover:bg-accent/90 hover:shadow-lg hover:shadow-accent/20 transition-all disabled:opacity-50"
         >
           {isSubmitting ? "Submitting..." : "Submit Message"}
         </button>

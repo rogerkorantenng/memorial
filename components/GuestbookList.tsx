@@ -49,36 +49,58 @@ export default function GuestbookList() {
       <GuestbookForm onEntryAdded={handleEntryAdded} />
 
       {loading ? (
-        <div className="text-text-muted text-sm text-center py-8">Loading messages...</div>
+        <div className="text-text-muted text-sm text-center py-12">
+          <div className="inline-block w-5 h-5 border-2 border-gold/30 border-t-gold/70 rounded-full animate-spin mb-3" />
+          <p>Loading messages...</p>
+        </div>
       ) : entries.length === 0 ? (
-        <div className="text-text-muted text-sm text-center py-8">No messages yet. Be the first to leave one.</div>
+        <div className="text-text-muted text-sm text-center py-12">
+          <p className="text-gold/40 text-2xl mb-2">🕊</p>
+          <p>No messages yet. Be the first to leave one.</p>
+        </div>
       ) : (
         <>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {entries.map((entry) => (
-              <div key={entry.id} className="bg-bg-card rounded-lg p-4 border-l-[3px] border-accent">
-                <p className="text-white/90 text-sm mb-2">&ldquo;{entry.message}&rdquo;</p>
-                <p className="text-text-muted text-xs">
-                  — {entry.name} &middot; {entry.relationship} &middot; {timeAgo(entry.created_at)}
-                </p>
+              <div
+                key={entry.id}
+                className="bg-bg-card/60 rounded-xl p-5 card-glow flex gap-4"
+              >
+                <div className="initial-avatar mt-1">
+                  {entry.name.charAt(0).toUpperCase()}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-white/85 text-sm leading-relaxed mb-2">
+                    &ldquo;{entry.message}&rdquo;
+                  </p>
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="text-gold/70 font-medium">{entry.name}</span>
+                    <span className="text-text-muted">&middot;</span>
+                    <span className="text-text-muted">{entry.relationship}</span>
+                    <span className="text-text-muted">&middot;</span>
+                    <span className="text-text-muted">{timeAgo(entry.created_at)}</span>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
 
           {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-2 mt-8">
+            <div className="flex items-center justify-center gap-3 mt-10">
               <button
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page === 1}
-                className="px-3 py-1 text-sm rounded bg-bg-subtle text-text-body disabled:opacity-30 hover:bg-bg-card transition-colors"
+                className="px-4 py-2 text-sm rounded-lg bg-bg-card border border-bg-subtle text-text-body disabled:opacity-30 hover:border-gold/30 transition-all"
               >
                 Previous
               </button>
-              <span className="text-text-muted text-sm">Page {page} of {totalPages}</span>
+              <span className="text-text-muted text-sm px-2">
+                {page} / {totalPages}
+              </span>
               <button
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
-                className="px-3 py-1 text-sm rounded bg-bg-subtle text-text-body disabled:opacity-30 hover:bg-bg-card transition-colors"
+                className="px-4 py-2 text-sm rounded-lg bg-bg-card border border-bg-subtle text-text-body disabled:opacity-30 hover:border-gold/30 transition-all"
               >
                 Next
               </button>
