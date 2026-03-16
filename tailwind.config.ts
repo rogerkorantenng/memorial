@@ -8,18 +8,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "bg-primary": "#0d0d1a",
-        "bg-card": "#1a1a2e",
-        "bg-subtle": "#2a2a3e",
-        "text-primary": "#e0d5c1",
-        "text-body": "#8888aa",
-        "text-muted": "#555555",
-        accent: "#2d8a4e",
+        "bg-deep": "#080810",
+        "bg-primary": "#0c0c18",
+        "bg-card": "#12121f",
+        "bg-elevated": "#1a1a2e",
+        "bg-subtle": "#232340",
         gold: "#c9a96e",
+        "gold-light": "#e2c992",
+        accent: "#2d8a4e",
+        "text-bright": "#f0ece4",
+        "text-primary": "#e0d5c1",
+        "text-body": "#9a96a8",
+        "text-muted": "#5a5670",
       },
       fontFamily: {
-        serif: ["var(--font-playfair)", "serif"],
-        sans: ["var(--font-inter)", "sans-serif"],
+        serif: ["var(--font-cormorant)", "serif"],
+        sans: ["var(--font-outfit)", "sans-serif"],
       },
       maxWidth: {
         content: "1200px",

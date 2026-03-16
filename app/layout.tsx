@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Cormorant_Garamond, Outfit } from "next/font/google";
 import { siteConfig } from "@/data/siteConfig";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DonatePopup from "@/components/DonatePopup";
-import PageTransition from "@/components/PageTransition";
+import FloatingParticles from "@/components/FloatingParticles";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-cormorant",
   display: "swap",
 });
 
-const inter = Inter({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-outfit",
   display: "swap",
 });
 
@@ -35,12 +36,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${outfit.variable}`}>
       <body>
+        <FloatingParticles />
         <Header />
-        <main>
-          <PageTransition>{children}</PageTransition>
-        </main>
+        <main>{children}</main>
         <Footer />
         <DonatePopup />
       </body>
