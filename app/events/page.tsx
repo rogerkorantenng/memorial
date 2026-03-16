@@ -19,14 +19,12 @@ export default function EventsPage() {
   );
 
   return (
-    <section className="py-16 sm:py-24 px-4">
+    <section className="py-24 sm:py-32 px-4 pt-32">
       <div className="max-w-2xl mx-auto">
-        <div className="ornamental-heading mb-10">
+        <div className="section-heading mb-12">
           <h1>Events</h1>
-          <div className="section-divider">
-            <span className="text-gold/40 text-xs">✦</span>
-          </div>
-          <p className="subtitle-text">Memorial services and gatherings</p>
+          <div className="divider"><span>✦</span></div>
+          <p className="subtitle">Memorial services and gatherings</p>
         </div>
         <div className="space-y-4">
           {sortedEvents.map((event) => (

@@ -49,35 +49,36 @@ export default function GuestbookList() {
       <GuestbookForm onEntryAdded={handleEntryAdded} />
 
       {loading ? (
-        <div className="text-text-muted text-sm text-center py-12">
-          <div className="inline-block w-5 h-5 border-2 border-gold/30 border-t-gold/70 rounded-full animate-spin mb-3" />
-          <p>Loading messages...</p>
+        <div className="text-center py-16">
+          <div className="inline-block w-5 h-5 border border-gold/20 border-t-gold/60 rounded-full animate-spin mb-4" />
+          <p className="text-text-muted text-xs tracking-wider uppercase">Loading messages</p>
         </div>
       ) : entries.length === 0 ? (
-        <div className="text-text-muted text-sm text-center py-12">
-          <p className="text-gold/40 text-2xl mb-2">🕊</p>
-          <p>No messages yet. Be the first to leave one.</p>
+        <div className="text-center py-16">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="h-px w-8 bg-gold/10" />
+            <span className="text-gold/20 text-sm">✦</span>
+            <div className="h-px w-8 bg-gold/10" />
+          </div>
+          <p className="text-text-muted text-sm font-serif italic">No messages yet. Be the first to leave one.</p>
         </div>
       ) : (
         <>
           <div className="space-y-4">
             {entries.map((entry) => (
-              <div
-                key={entry.id}
-                className="bg-bg-card/60 rounded-xl p-5 card-glow flex gap-4"
-              >
-                <div className="initial-avatar mt-1">
+              <div key={entry.id} className="glass-card p-6 flex gap-4">
+                <div className="initial-avatar mt-0.5">
                   {entry.name.charAt(0).toUpperCase()}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-white/85 text-sm leading-relaxed mb-2">
+                  <p className="font-serif text-sm text-text-primary/80 italic leading-relaxed mb-3">
                     &ldquo;{entry.message}&rdquo;
                   </p>
-                  <div className="flex items-center gap-2 text-xs">
-                    <span className="text-gold/70 font-medium">{entry.name}</span>
-                    <span className="text-text-muted">&middot;</span>
-                    <span className="text-text-muted">{entry.relationship}</span>
-                    <span className="text-text-muted">&middot;</span>
+                  <div className="flex items-center gap-2 text-[11px]">
+                    <span className="text-gold/70 font-medium tracking-wide">{entry.name}</span>
+                    <span className="text-text-muted/30">&middot;</span>
+                    <span className="text-text-muted tracking-wider uppercase">{entry.relationship}</span>
+                    <span className="text-text-muted/30">&middot;</span>
                     <span className="text-text-muted">{timeAgo(entry.created_at)}</span>
                   </div>
                 </div>
@@ -86,21 +87,21 @@ export default function GuestbookList() {
           </div>
 
           {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-3 mt-10">
+            <div className="flex items-center justify-center gap-4 mt-12">
               <button
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page === 1}
-                className="px-4 py-2 text-sm rounded-lg bg-bg-card border border-bg-subtle text-text-body disabled:opacity-30 hover:border-gold/30 transition-all"
+                className="text-[10px] tracking-[2px] uppercase px-5 py-2 border border-gold/10 text-text-muted rounded-full disabled:opacity-20 hover:border-gold/30 hover:text-gold transition-all duration-300"
               >
                 Previous
               </button>
-              <span className="text-text-muted text-sm px-2">
+              <span className="text-text-muted/40 text-xs font-sans">
                 {page} / {totalPages}
               </span>
               <button
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
-                className="px-4 py-2 text-sm rounded-lg bg-bg-card border border-bg-subtle text-text-body disabled:opacity-30 hover:border-gold/30 transition-all"
+                className="text-[10px] tracking-[2px] uppercase px-5 py-2 border border-gold/10 text-text-muted rounded-full disabled:opacity-20 hover:border-gold/30 hover:text-gold transition-all duration-300"
               >
                 Next
               </button>

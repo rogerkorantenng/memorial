@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { siteConfig } from "@/data/siteConfig";
 
 interface GuestbookEntry {
   id: string;
@@ -24,6 +26,7 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [showDonatePopup, setShowDonatePopup] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -52,7 +55,16 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
       setMessage("");
       setRelationship("Family");
       setSuccess(true);
-      setTimeout(() => setSuccess(false), 3000);
+
+      if (!sessionStorage.getItem("donateAfterGuestbook")) {
+        sessionStorage.setItem("donateAfterGuestbook", "true");
+        setTimeout(() => {
+          setShowDonatePopup(true);
+          setSuccess(false);
+        }, 1500);
+      } else {
+        setTimeout(() => setSuccess(false), 3000);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to submit");
     } finally {
@@ -60,87 +72,122 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
     }
   };
 
+  const inputClass =
+    "w-full bg-bg-deep/50 border border-bg-subtle/50 rounded-xl px-4 py-3 text-text-primary text-sm font-sans focus:outline-none focus:border-gold/30 transition-colors duration-300 placeholder:text-text-muted/40";
+
   return (
-    <form onSubmit={handleSubmit} className="bg-bg-card/60 rounded-xl p-6 sm:p-8 mb-8 border border-bg-subtle/50">
-      <h3 className="font-serif text-text-primary text-lg mb-6">
-        Leave a Message
-      </h3>
+    <>
+      <form onSubmit={handleSubmit} className="glass-card p-6 sm:p-8 mb-10">
+        <h3 className="font-serif text-xl text-text-bright font-light tracking-wider mb-6">
+          Leave a Message
+        </h3>
 
-      {/* Honeypot — hidden from humans */}
-      <div className="hidden" aria-hidden="true">
-        <input
-          type="text"
-          name="website"
-          tabIndex={-1}
-          autoComplete="off"
-          value={honeypot}
-          onChange={(e) => setHoneypot(e.target.value)}
-        />
-      </div>
-
-      <div className="space-y-4">
-        <div>
-          <label htmlFor="name" className="block text-text-body text-sm mb-1">
-            Your Name *
-          </label>
-          <input
-            id="name"
-            type="text"
-            required
-            maxLength={100}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full bg-bg-primary border border-bg-subtle rounded px-3 py-2 text-text-primary text-sm focus:outline-none focus:border-accent transition-colors"
-            placeholder="Enter your name"
-          />
+        <div className="hidden" aria-hidden="true">
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
         </div>
 
-        <div>
-          <label htmlFor="relationship" className="block text-text-body text-sm mb-1">
-            Relationship
-          </label>
-          <select
-            id="relationship"
-            value={relationship}
-            onChange={(e) => setRelationship(e.target.value)}
-            className="w-full bg-bg-primary border border-bg-subtle rounded px-3 py-2 text-text-primary text-sm focus:outline-none focus:border-accent transition-colors"
+        <div className="space-y-5">
+          <div>
+            <label htmlFor="name" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+              Your Name
+            </label>
+            <input id="name" type="text" required maxLength={100} value={name} onChange={(e) => setName(e.target.value)} className={inputClass} placeholder="Enter your name" />
+          </div>
+
+          <div>
+            <label htmlFor="relationship" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+              Relationship
+            </label>
+            <select id="relationship" value={relationship} onChange={(e) => setRelationship(e.target.value)} className={inputClass}>
+              {RELATIONSHIPS.map((r) => (
+                <option key={r} value={r}>{r}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="message" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+              Your Message
+            </label>
+            <textarea id="message" required maxLength={2000} rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className={`${inputClass} resize-none`} placeholder="Share a memory, story, or condolence..." />
+            <p className="text-text-muted/30 text-[10px] mt-2 text-right tracking-wider">
+              {message.length} / 2000
+            </p>
+          </div>
+
+          {error && <p className="text-red-400/80 text-xs">{error}</p>}
+          {success && (
+            <p className="text-gold/70 text-xs font-serif italic">Thank you for your beautiful message.</p>
+          )}
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="text-[11px] tracking-[2px] uppercase px-8 py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 disabled:opacity-40"
           >
-            {RELATIONSHIPS.map((r) => (
-              <option key={r} value={r}>{r}</option>
-            ))}
-          </select>
+            {isSubmitting ? "Sending..." : "Submit Message"}
+          </button>
         </div>
+      </form>
 
-        <div>
-          <label htmlFor="message" className="block text-text-body text-sm mb-1">
-            Your Message *
-          </label>
-          <textarea
-            id="message"
-            required
-            maxLength={2000}
-            rows={4}
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className="w-full bg-bg-primary border border-bg-subtle rounded px-3 py-2 text-text-primary text-sm focus:outline-none focus:border-accent transition-colors resize-vertical"
-            placeholder="Share a memory, story, or condolence..."
-          />
-          <p className="text-text-muted text-xs mt-1">
-            {message.length}/2000 characters
-          </p>
-        </div>
+      {/* Donate popup after submission */}
+      <AnimatePresence>
+        {showDonatePopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-md px-4"
+            onClick={() => setShowDonatePopup(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25 }}
+              className="glass-card gold-border-animated p-10 max-w-md w-full text-center relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowDonatePopup(false)}
+                className="absolute top-4 right-4 text-text-muted/40 hover:text-text-body transition-colors"
+                aria-label="Close"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
 
-        {error && <p className="text-red-400 text-sm">{error}</p>}
-        {success && <p className="text-accent text-sm">Thank you for your message.</p>}
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="h-px w-8 bg-gold/15" />
+                <span className="text-gold/30 text-xs">✦</span>
+                <div className="h-px w-8 bg-gold/15" />
+              </div>
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="bg-accent text-white px-8 py-2.5 rounded-lg text-sm font-medium hover:bg-accent/90 hover:shadow-lg hover:shadow-accent/20 transition-all disabled:opacity-50"
-        >
-          {isSubmitting ? "Submitting..." : "Submit Message"}
-        </button>
-      </div>
-    </form>
+              <h3 className="font-serif text-2xl text-text-bright font-light tracking-wider mb-3">
+                Thank You
+              </h3>
+              <p className="text-text-body text-sm leading-relaxed mb-8">
+                Your words mean so much to the family. If you&apos;d like to support them further, every contribution helps.
+              </p>
+              <a
+                href={siteConfig.paystackLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-[11px] tracking-[2px] uppercase px-8 py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300"
+              >
+                Donate to the Family
+              </a>
+              <button
+                onClick={() => setShowDonatePopup(false)}
+                className="block mx-auto mt-4 text-text-muted/40 text-[10px] uppercase tracking-[2px] hover:text-text-muted transition-colors"
+              >
+                Maybe later
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

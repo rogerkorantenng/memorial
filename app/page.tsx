@@ -7,7 +7,6 @@ import EventCard from "@/components/EventCard";
 import ScrollFadeIn from "@/components/ScrollFadeIn";
 import { events } from "@/data/events";
 
-// Revalidate guestbook preview data every 60 seconds
 export const revalidate = 60;
 
 export default function Home() {
@@ -25,14 +24,15 @@ export default function Home() {
 
       {upcomingEvent && (
         <ScrollFadeIn>
-          <section className="py-16 sm:py-24 px-4 border-t border-bg-subtle/50">
+          <section className="py-24 sm:py-32 px-4">
             <div className="max-w-content mx-auto">
-              <div className="flex items-center justify-between mb-6">
-                <div className="ornamental-heading text-left !mb-0">
-                  <h2>Upcoming Events</h2>
+              <div className="flex items-center justify-between mb-10">
+                <div>
+                  <p className="text-gold/40 text-[10px] font-sans uppercase tracking-[4px] mb-2">Upcoming</p>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-light text-text-bright tracking-wider">Events</h2>
                 </div>
                 <Link href="/events" className="view-all-link">
-                  View All →
+                  View All
                 </Link>
               </div>
               <EventCard event={upcomingEvent} />

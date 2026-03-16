@@ -2,22 +2,24 @@ import { siteConfig } from "@/data/siteConfig";
 
 export default function Footer() {
   return (
-    <footer className="bg-bg-primary py-12 text-center">
-      <div className="flex items-center justify-center gap-4 mb-6">
-        <div className="h-px w-16 bg-gradient-to-r from-transparent to-gold/20" />
-        <span className="text-gold/30 text-sm">✦</span>
-        <div className="h-px w-16 bg-gradient-to-l from-transparent to-gold/20" />
+    <footer className="relative py-16 text-center">
+      {/* Top border with gold gradient */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+
+      <div className="flex items-center justify-center gap-5 mb-8">
+        <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold/15" />
+        <div className="w-1 h-1 rotate-45 border border-gold/20" />
+        <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold/15" />
       </div>
 
-      <p className="text-gold/40 text-lg mb-1">🕊</p>
-      <p className="text-text-body text-sm font-serif">
+      <p className="font-serif text-lg text-text-primary/60 font-light tracking-wider mb-1">
         In loving memory of {siteConfig.name}
       </p>
-      <p className="text-text-muted/60 text-xs mt-1 italic">
+      <p className="font-serif text-sm italic text-text-muted/40 mb-6">
         Forever in our hearts
       </p>
-      <p className="text-text-muted/40 text-[10px] mt-4">
-        &copy; {new Date().getFullYear()} &middot; Built with love by family
+      <p className="text-[10px] text-text-muted/30 uppercase tracking-[3px]">
+        &copy; {new Date().getFullYear()}
       </p>
     </footer>
   );

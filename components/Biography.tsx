@@ -4,27 +4,29 @@ import ScrollFadeIn from "@/components/ScrollFadeIn";
 export default function Biography() {
   return (
     <ScrollFadeIn>
-      <section className="py-16 sm:py-24 px-4">
-        <div className="max-w-content mx-auto max-w-3xl">
-          <div className="ornamental-heading">
-            <h2>Biography</h2>
-            <div className="section-divider">
-              <span className="text-gold/40 text-xs">✦</span>
-            </div>
+      <section className="py-24 sm:py-32 px-4 relative">
+        <div className="max-w-content mx-auto">
+          <div className="section-heading">
+            <h2>A Life Remembered</h2>
+            <div className="divider"><span>✦</span></div>
           </div>
 
-          <div className="bg-bg-card/80 rounded-xl p-8 sm:p-10 gold-border-left relative">
-            <span className="quote-mark absolute -top-2 left-6">&ldquo;</span>
-            <div className="pt-4">
+          <div className="max-w-3xl mx-auto glass-card p-8 sm:p-12 relative">
+            {/* Decorative quote mark */}
+            <span className="absolute -top-4 left-8 font-serif text-6xl text-gold/15 leading-none select-none">&ldquo;</span>
+
+            <div className="relative">
               {biography.map((paragraph, index) => (
                 <p
                   key={index}
-                  className="text-text-body text-sm sm:text-base leading-[1.9] mb-5 last:mb-0"
+                  className="text-text-body text-sm sm:text-base leading-[2] mb-6 last:mb-0 first:text-text-primary/80"
                 >
                   {paragraph}
                 </p>
               ))}
             </div>
+
+            <span className="absolute -bottom-4 right-8 font-serif text-6xl text-gold/15 leading-none select-none">&rdquo;</span>
           </div>
         </div>
       </section>
