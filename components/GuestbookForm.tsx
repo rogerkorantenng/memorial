@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useRef, FormEvent } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/data/siteConfig";
 
@@ -25,8 +26,11 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
   const [relationship, setRelationship] = useState("Family");
   const [message, setMessage] = useState("");
   const [personalExperience, setPersonalExperience] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [honeypot, setHoneypot] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -39,6 +43,25 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
     setIsSubmitting(true);
 
     try {
+      // Upload image first if provided
+      let uploadedImageUrl: string | null = null;
+      if (imageFile) {
+        setUploadingImage(true);
+        const formData = new FormData();
+        formData.append("file", imageFile);
+        const uploadRes = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+        if (!uploadRes.ok) {
+          const uploadData = await uploadRes.json();
+          throw new Error(uploadData.error || "Image upload failed");
+        }
+        const uploadData = await uploadRes.json();
+        uploadedImageUrl = uploadData.url;
+        setUploadingImage(false);
+      }
+
       const res = await fetch("/api/guestbook", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -47,7 +70,7 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
           relationship,
           message,
           personal_experience: personalExperience,
-          image_url: imageUrl,
+          image_url: uploadedImageUrl,
           honeypot,
         }),
       });
@@ -65,7 +88,8 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
       setName("");
       setMessage("");
       setPersonalExperience("");
-      setImageUrl("");
+      setImageFile(null);
+      setImagePreview(null);
       setRelationship("Family");
       setSuccess(true);
 
@@ -136,12 +160,58 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
           </div>
 
           <div>
-            <label htmlFor="imageUrl" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
-              Photo URL (optional)
+            <label className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+              Upload a Photo (optional)
             </label>
-            <input id="imageUrl" type="url" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} className={inputClass} placeholder="Paste a link to a photo with him" />
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/gif"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  if (file.size > 5 * 1024 * 1024) {
+                    setError("Image must be less than 5MB");
+                    return;
+                  }
+                  setImageFile(file);
+                  setImagePreview(URL.createObjectURL(file));
+                  setError("");
+                }
+              }}
+            />
+            {imagePreview ? (
+              <div className="relative rounded-xl overflow-hidden">
+                <Image src={imagePreview} alt="Preview" width={400} height={250} className="w-full h-48 object-cover rounded-xl" />
+                <button
+                  type="button"
+                  onClick={() => {
+                    setImageFile(null);
+                    setImagePreview(null);
+                    if (fileInputRef.current) fileInputRef.current.value = "";
+                  }}
+                  className="absolute top-2 right-2 w-7 h-7 bg-black/60 backdrop-blur-sm rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className={`${inputClass} flex items-center justify-center gap-3 cursor-pointer hover:border-gold/30 py-8`}
+              >
+                <svg className="w-5 h-5 text-gold/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span className="text-text-muted/50 text-xs">Click to upload a photo with him</span>
+              </button>
+            )}
             <p className="text-text-muted/30 text-[10px] mt-2 tracking-wider">
-              Upload your photo to Google Drive or Imgur and paste the link here
+              JPEG, PNG, WebP or GIF &middot; Max 5MB
             </p>
           </div>
 
@@ -155,7 +225,7 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
             disabled={isSubmitting}
             className="text-[11px] tracking-[2px] uppercase px-8 py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 disabled:opacity-40"
           >
-            {isSubmitting ? "Sending..." : "Submit Tribute"}
+            {isSubmitting ? (uploadingImage ? "Uploading image..." : "Sending...") : "Submit Tribute"}
           </button>
         </div>
       </form>
