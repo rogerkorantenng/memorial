@@ -9,6 +9,8 @@ interface GuestbookEntry {
   name: string;
   relationship: string;
   message: string;
+  personal_experience: string | null;
+  image_url: string | null;
   created_at: string;
 }
 
@@ -66,22 +68,35 @@ export default function GuestbookList() {
         <>
           <div className="space-y-4">
             {entries.map((entry) => (
-              <div key={entry.id} className="glass-card p-6 flex gap-4">
-                <div className="initial-avatar mt-0.5">
-                  {entry.name.charAt(0).toUpperCase()}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-serif text-sm text-text-primary/80 italic leading-relaxed mb-3">
-                    &ldquo;{entry.message}&rdquo;
-                  </p>
-                  <div className="flex items-center gap-2 text-[11px]">
-                    <span className="text-gold/70 font-medium tracking-wide">{entry.name}</span>
-                    <span className="text-text-muted/30">&middot;</span>
-                    <span className="text-text-muted tracking-wider uppercase">{entry.relationship}</span>
-                    <span className="text-text-muted/30">&middot;</span>
-                    <span className="text-text-muted">{timeAgo(entry.created_at)}</span>
+              <div key={entry.id} className="glass-card p-6">
+                <div className="flex gap-4">
+                  <div className="initial-avatar mt-0.5">
+                    {entry.name.charAt(0).toUpperCase()}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-3 text-[11px]">
+                      <span className="text-gold/70 font-medium tracking-wide">{entry.name}</span>
+                      <span className="text-text-muted/30">&middot;</span>
+                      <span className="text-text-muted tracking-wider uppercase">{entry.relationship}</span>
+                      <span className="text-text-muted/30">&middot;</span>
+                      <span className="text-text-muted">{timeAgo(entry.created_at)}</span>
+                    </div>
+                    <p className="font-serif text-sm text-text-primary/80 italic leading-relaxed mb-2">
+                      &ldquo;{entry.message}&rdquo;
+                    </p>
+                    {entry.personal_experience && (
+                      <div className="mt-3 pt-3 border-t border-gold/5">
+                        <p className="text-[10px] text-gold/40 uppercase tracking-[2px] mb-1">Personal Experience</p>
+                        <p className="text-text-body text-xs leading-relaxed">{entry.personal_experience}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
+                {entry.image_url && (
+                  <div className="mt-4 rounded-xl overflow-hidden">
+                    <img src={entry.image_url} alt={`Photo shared by ${entry.name}`} className="w-full h-48 object-cover rounded-xl" />
+                  </div>
+                )}
               </div>
             ))}
           </div>

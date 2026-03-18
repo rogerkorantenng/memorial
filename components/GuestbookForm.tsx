@@ -9,6 +9,8 @@ interface GuestbookEntry {
   name: string;
   relationship: string;
   message: string;
+  personal_experience: string | null;
+  image_url: string | null;
   created_at: string;
 }
 
@@ -22,6 +24,8 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
   const [name, setName] = useState("");
   const [relationship, setRelationship] = useState("Family");
   const [message, setMessage] = useState("");
+  const [personalExperience, setPersonalExperience] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -38,7 +42,14 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
       const res = await fetch("/api/guestbook", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, relationship, message, honeypot }),
+        body: JSON.stringify({
+          name,
+          relationship,
+          message,
+          personal_experience: personalExperience,
+          image_url: imageUrl,
+          honeypot,
+        }),
       });
 
       if (!res.ok) {
@@ -53,6 +64,8 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
 
       setName("");
       setMessage("");
+      setPersonalExperience("");
+      setImageUrl("");
       setRelationship("Family");
       setSuccess(true);
 
@@ -79,7 +92,7 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
     <>
       <form onSubmit={handleSubmit} className="glass-card p-6 sm:p-8 mb-10">
         <h3 className="font-serif text-xl text-text-bright font-light tracking-wider mb-6">
-          Leave a Message
+          Leave a Tribute
         </h3>
 
         <div className="hidden" aria-hidden="true">
@@ -89,14 +102,14 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
         <div className="space-y-5">
           <div>
             <label htmlFor="name" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
-              Your Name
+              Full Name *
             </label>
-            <input id="name" type="text" required maxLength={100} value={name} onChange={(e) => setName(e.target.value)} className={inputClass} placeholder="Enter your name" />
+            <input id="name" type="text" required maxLength={100} value={name} onChange={(e) => setName(e.target.value)} className={inputClass} placeholder="Enter your full name" />
           </div>
 
           <div>
             <label htmlFor="relationship" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
-              Relationship
+              Relationship to {siteConfig.name}
             </label>
             <select id="relationship" value={relationship} onChange={(e) => setRelationship(e.target.value)} className={inputClass}>
               {RELATIONSHIPS.map((r) => (
@@ -107,17 +120,34 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
 
           <div>
             <label htmlFor="message" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
-              Your Message
+              Tribute Message *
             </label>
-            <textarea id="message" required maxLength={2000} rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className={`${inputClass} resize-none`} placeholder="Share a memory, story, or condolence..." />
+            <textarea id="message" required maxLength={2000} rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className={`${inputClass} resize-none`} placeholder="Share a tribute message..." />
             <p className="text-text-muted/30 text-[10px] mt-2 text-right tracking-wider">
               {message.length} / 2000
             </p>
           </div>
 
+          <div>
+            <label htmlFor="experience" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+              Personal Experience
+            </label>
+            <textarea id="experience" maxLength={2000} rows={3} value={personalExperience} onChange={(e) => setPersonalExperience(e.target.value)} className={`${inputClass} resize-none`} placeholder="Share a personal experience or memory with him..." />
+          </div>
+
+          <div>
+            <label htmlFor="imageUrl" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+              Photo URL (optional)
+            </label>
+            <input id="imageUrl" type="url" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} className={inputClass} placeholder="Paste a link to a photo with him" />
+            <p className="text-text-muted/30 text-[10px] mt-2 tracking-wider">
+              Upload your photo to Google Drive or Imgur and paste the link here
+            </p>
+          </div>
+
           {error && <p className="text-red-400/80 text-xs">{error}</p>}
           {success && (
-            <p className="text-gold/70 text-xs font-serif italic">Thank you for your beautiful message.</p>
+            <p className="text-gold/70 text-xs font-serif italic">Thank you for your beautiful tribute.</p>
           )}
 
           <button
@@ -125,12 +155,11 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
             disabled={isSubmitting}
             className="text-[11px] tracking-[2px] uppercase px-8 py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 disabled:opacity-40"
           >
-            {isSubmitting ? "Sending..." : "Submit Message"}
+            {isSubmitting ? "Sending..." : "Submit Tribute"}
           </button>
         </div>
       </form>
 
-      {/* Donate popup after submission */}
       <AnimatePresence>
         {showDonatePopup && (
           <motion.div
@@ -168,7 +197,7 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
                 Thank You
               </h3>
               <p className="text-text-body text-sm leading-relaxed mb-8">
-                Your words mean so much to the family. If you&apos;d like to support them further, every contribution helps.
+                Your tribute means so much to the family. If you&apos;d like to support them further, every contribution helps.
               </p>
               <a
                 href={siteConfig.paystackLink}

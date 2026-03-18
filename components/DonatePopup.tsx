@@ -35,7 +35,7 @@ export default function DonatePopup() {
 
   const handleGoToGuestbook = () => {
     setIsVisible(false);
-    router.push("/guestbook");
+    router.push("/tributes");
   };
 
   return (

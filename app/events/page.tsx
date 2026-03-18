@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/data/siteConfig";
 import { events } from "@/data/events";
 import EventCard from "@/components/EventCard";
+import RsvpForm from "@/components/RsvpForm";
 
 export const metadata: Metadata = {
   title: `Events — ${siteConfig.siteTitle}`,
@@ -26,11 +27,21 @@ export default function EventsPage() {
           <div className="divider"><span>✦</span></div>
           <p className="subtitle">Memorial services and gatherings</p>
         </div>
-        <div className="space-y-4">
+
+        <div className="space-y-4 mb-16">
           {sortedEvents.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}
         </div>
+
+        {/* RSVP Section */}
+        <div className="section-heading mb-10">
+          <h2>RSVP</h2>
+          <div className="divider"><span>✦</span></div>
+          <p className="subtitle">Let us know you are coming</p>
+        </div>
+
+        <RsvpForm />
       </div>
     </section>
   );

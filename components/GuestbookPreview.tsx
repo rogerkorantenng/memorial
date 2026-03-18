@@ -27,9 +27,9 @@ export default async function GuestbookPreview() {
           <div className="flex items-center justify-between mb-10">
             <div>
               <p className="text-gold/40 text-[10px] font-sans uppercase tracking-[4px] mb-2">Messages</p>
-              <h2 className="font-serif text-2xl sm:text-3xl font-light text-text-bright tracking-wider">Guestbook</h2>
+              <h2 className="font-serif text-2xl sm:text-3xl font-light text-text-bright tracking-wider">Tributes</h2>
             </div>
-            <Link href="/guestbook" className="view-all-link">
+            <Link href="/tributes" className="view-all-link">
               View All
             </Link>
           </div>
