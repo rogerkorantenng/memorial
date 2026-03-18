@@ -145,7 +145,7 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", damping: 25 }}
-              className="glass-card gold-border-animated p-10 max-w-md w-full text-center relative"
+              className="glass-card gold-border-animated p-10 max-w-md w-full text-center relative z-[101]"
               onClick={(e) => e.stopPropagation()}
             >
               <button
