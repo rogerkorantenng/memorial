@@ -35,9 +35,21 @@ export async function POST(request: NextRequest) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
 
+  // Ensure bucket exists
+  const BUCKET = "memorial-images";
+  const { data: buckets } = await supabaseServer.storage.listBuckets();
+  const bucketExists = buckets?.some((b) => b.name === BUCKET);
+  if (!bucketExists) {
+    await supabaseServer.storage.createBucket(BUCKET, {
+      public: true,
+      allowedMimeTypes: ["image/jpeg", "image/png", "image/webp", "image/gif"],
+      fileSizeLimit: 5 * 1024 * 1024,
+    });
+  }
+
   // Upload to Supabase Storage
   const { error: uploadError } = await supabaseServer.storage
-    .from("memorial-images")
+    .from(BUCKET)
     .upload(path, buffer, {
       contentType: file.type,
       upsert: false,
@@ -52,7 +64,7 @@ export async function POST(request: NextRequest) {
 
   // Get public URL
   const { data: urlData } = supabaseServer.storage
-    .from("memorial-images")
+    .from(BUCKET)
     .getPublicUrl(path);
 
   return NextResponse.json({ url: urlData.publicUrl }, { status: 201 });
