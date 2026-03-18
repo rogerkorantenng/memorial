@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
 
   const { data, error, count } = await supabaseServer
     .from("guestbook_entries")
-    .select("id, name, relationship, message, created_at", { count: "exact" })
+    .select("id, name, relationship, message, personal_experience, image_url, created_at", { count: "exact" })
     .order("created_at", { ascending: false })
     .range(offset, offset + limit - 1);
 
@@ -93,15 +93,18 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  // Insert entry
   const { data, error } = await supabaseServer
     .from("guestbook_entries")
     .insert({
       name: trimmedName,
       relationship: trimmedRelationship,
       message: trimmedMessage,
+      personal_experience: (body.personal_experience || "").trim() || null,
+      image_url: body.image_url || null,
       ip_address: ip,
     })
-    .select("id, name, relationship, message, created_at")
+    .select("id, name, relationship, message, personal_experience, image_url, created_at")
     .single();
 
   if (error) {

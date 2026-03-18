@@ -18,8 +18,10 @@ export default function Header() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/gallery", label: "Gallery" },
-    { href: "/guestbook", label: "Guestbook" },
+    { href: "/tributes", label: "Tributes" },
+    { href: "/announcements", label: "Announcements" },
     { href: "/events", label: "Events" },
+    { href: "/donations", label: "Donations" },
   ];
 
   return (
