@@ -11,59 +11,49 @@ export default function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
     <section
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background gradient layers */}
+      {/* Warm gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-bg-deep via-bg-primary to-bg-deep" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,169,110,0.04)_0%,_transparent_70%)]" />
-
-      {/* Horizontal gold lines */}
-      <div className="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
-      <div className="absolute bottom-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(92,32,40,0.06)_0%,_transparent_60%)]" />
 
       <motion.div
         style={{ y: textY, opacity }}
         className="relative z-10 text-center px-4"
       >
-        {/* Top ornament */}
+        {/* Cross */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.2 }}
-          className="mb-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.2 }}
+          className="mb-8"
         >
-          <div className="flex items-center justify-center gap-6">
-            <div className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent to-gold/30" />
-            <div className="w-1.5 h-1.5 rotate-45 border border-gold/40" />
-            <div className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent to-gold/30" />
-          </div>
+          <span className="text-gold/25 text-4xl leading-none">&#10013;</span>
         </motion.div>
 
-        {/* Label */}
+        {/* Sunrise label */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.4 }}
-          className="text-gold/50 text-[10px] sm:text-xs font-sans uppercase tracking-[6px] mb-8"
+          transition={{ duration: 1.2, delay: 0.4 }}
+          className="text-gold/40 text-[10px] font-sans uppercase tracking-[5px] mb-8"
         >
           In Loving Memory
         </motion.p>
 
-        {/* Portrait */}
+        {/* Portrait — large, prominent */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
-          style={{ scale: imageScale }}
         >
-          <div className="w-40 h-40 sm:w-52 sm:h-52 mx-auto mb-10 rounded-full overflow-hidden relative portrait-glow gold-border-animated">
+          <div className="w-44 h-44 sm:w-56 sm:h-56 mx-auto mb-8 rounded-full overflow-hidden relative portrait-glow border-2 border-gold/15">
             <Image
               src={siteConfig.portraitImage}
               alt={siteConfig.name}
@@ -76,26 +66,32 @@ export default function Hero() {
 
         {/* Name */}
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="font-serif text-4xl sm:text-5xl md:text-7xl font-light text-text-bright uppercase tracking-[6px] sm:tracking-[10px] mb-4"
+          className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-text-bright uppercase tracking-[4px] sm:tracking-[6px] mb-6"
         >
           {siteConfig.name}
         </motion.h1>
 
-        {/* Dates with gold dividers */}
+        {/* Sunrise — Sunset dates */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
-          className="flex items-center justify-center gap-4 mb-8"
+          className="mb-8"
         >
-          <div className="h-px w-10 sm:w-16 bg-gold/20" />
-          <p className="text-text-body/80 text-sm sm:text-base font-sans tracking-wider">
-            {siteConfig.birthDate} &mdash; {siteConfig.deathDate}
-          </p>
-          <div className="h-px w-10 sm:w-16 bg-gold/20" />
+          <div className="flex items-center justify-center gap-6 sm:gap-10 text-text-body/70">
+            <div className="text-center">
+              <p className="text-gold/30 text-[9px] uppercase tracking-[3px] mb-1">Sunrise</p>
+              <p className="font-serif text-sm sm:text-base text-text-primary/70">{siteConfig.birthDate}</p>
+            </div>
+            <span className="text-gold/20 text-lg">&mdash;</span>
+            <div className="text-center">
+              <p className="text-gold/30 text-[9px] uppercase tracking-[3px] mb-1">Sunset</p>
+              <p className="font-serif text-sm sm:text-base text-text-primary/70">{siteConfig.deathDate}</p>
+            </div>
+          </div>
         </motion.div>
 
         {/* Quote */}
@@ -103,7 +99,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="font-serif text-lg sm:text-xl italic text-text-body/50 max-w-xl mx-auto leading-relaxed font-light"
+          className="font-serif text-base sm:text-lg italic text-text-body/40 max-w-md mx-auto leading-relaxed font-light"
         >
           &ldquo;{siteConfig.quote}&rdquo;
         </motion.p>
@@ -113,12 +109,12 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, delay: 1.5 }}
-          className="mt-12"
+          className="mt-10"
         >
-          <div className="flex items-center justify-center gap-4">
-            <div className="h-px w-8 bg-gold/15" />
-            <span className="text-gold/25 text-sm">✦</span>
-            <div className="h-px w-8 bg-gold/15" />
+          <div className="flex items-center justify-center gap-3">
+            <div className="h-px w-6 bg-gold/10" />
+            <span className="text-gold/15 text-xs">&#10013;</span>
+            <div className="h-px w-6 bg-gold/10" />
           </div>
         </motion.div>
 
@@ -127,14 +123,14 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="mt-12"
         >
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-5 h-8 rounded-full border border-gold/20 flex items-start justify-center p-1.5"
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-4 h-7 mx-auto rounded-full border border-gold/10 flex items-start justify-center p-1"
           >
-            <div className="w-0.5 h-2 bg-gold/40 rounded-full" />
+            <div className="w-0.5 h-1.5 bg-gold/20 rounded-full" />
           </motion.div>
         </motion.div>
       </motion.div>

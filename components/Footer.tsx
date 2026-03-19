@@ -2,23 +2,21 @@ import { siteConfig } from "@/data/siteConfig";
 
 export default function Footer() {
   return (
-    <footer className="relative py-16 text-center">
-      {/* Top border with gold gradient */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+    <footer className="relative py-14 text-center">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
 
-      <div className="flex items-center justify-center gap-5 mb-8">
-        <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold/15" />
-        <div className="w-1 h-1 rotate-45 border border-gold/20" />
-        <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold/15" />
-      </div>
+      <span className="text-gold/15 text-2xl leading-none">&#10013;</span>
 
-      <p className="font-serif text-lg text-text-primary/60 font-light tracking-wider mb-1">
+      <p className="font-serif text-base text-text-primary/50 font-light tracking-wider mt-4 mb-1">
         In loving memory of {siteConfig.name}
       </p>
-      <p className="font-serif text-sm italic text-text-muted/40 mb-6">
+      <p className="font-serif text-sm italic text-text-muted/30 mb-1">
         Forever in our hearts
       </p>
-      <p className="text-[10px] text-text-muted/30 uppercase tracking-[3px]">
+      <p className="font-serif text-xs text-text-muted/20 mt-1">
+        Rest in perfect peace
+      </p>
+      <p className="text-[9px] text-text-muted/20 uppercase tracking-[3px] mt-6">
         &copy; {new Date().getFullYear()}
       </p>
     </footer>

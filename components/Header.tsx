@@ -28,25 +28,25 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-bg-deep/80 backdrop-blur-xl border-b border-gold/5"
+          ? "bg-bg-deep/90 backdrop-blur-lg border-b border-gold/5"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-content mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-content mx-auto px-5 py-4 flex items-center justify-between">
         <Link
           href="/"
-          className="font-serif text-text-bright text-sm tracking-[3px] uppercase font-light hover:text-gold transition-colors duration-300"
+          className="font-serif text-text-primary/80 text-sm tracking-[2px] uppercase font-light hover:text-gold/70 transition-colors duration-300"
         >
           {siteConfig.name}
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-text-muted text-xs tracking-[2px] uppercase hover:text-gold transition-colors duration-300"
+              className="text-text-muted text-[10px] tracking-[2px] uppercase hover:text-text-body transition-colors duration-300"
             >
               {link.label}
             </Link>
@@ -55,19 +55,19 @@ export default function Header() {
             href={siteConfig.paystackLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs tracking-[2px] uppercase px-5 py-2 border border-accent/60 text-accent hover:bg-accent hover:text-white rounded-full transition-all duration-300"
+            className="text-[10px] tracking-[2px] uppercase px-4 py-1.5 border border-accent/40 text-accent/80 hover:bg-accent/10 hover:text-accent rounded-full transition-all duration-300"
           >
             Donate
           </a>
         </nav>
 
         {/* Mobile */}
-        <div className="flex items-center gap-4 md:hidden">
+        <div className="flex items-center gap-3 lg:hidden">
           <a
             href={siteConfig.paystackLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[10px] tracking-[2px] uppercase px-4 py-1.5 border border-accent/60 text-accent rounded-full"
+            className="text-[9px] tracking-[2px] uppercase px-3 py-1 border border-accent/40 text-accent/80 rounded-full"
           >
             Donate
           </a>
@@ -84,26 +84,25 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.nav
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden bg-bg-deep/95 backdrop-blur-xl border-t border-gold/5"
+            className="lg:hidden overflow-hidden bg-bg-deep/95 backdrop-blur-xl border-t border-gold/5"
           >
-            <div className="px-6 py-6 space-y-4">
+            <div className="px-5 py-5 space-y-3">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
+                  transition={{ delay: i * 0.04 }}
                 >
                   <Link
                     href={link.href}
-                    className="block text-text-muted text-xs tracking-[2px] uppercase hover:text-gold transition-colors"
+                    className="block text-text-muted text-[10px] tracking-[2px] uppercase hover:text-text-body transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.label}

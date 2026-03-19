@@ -30,16 +30,16 @@ export default function FloatingParticles() {
     const createParticle = () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      size: Math.random() * 2 + 0.5,
-      speedX: (Math.random() - 0.5) * 0.3,
-      speedY: -Math.random() * 0.5 - 0.1,
-      opacity: Math.random() * 0.4,
-      fadeDir: Math.random() > 0.5 ? 0.002 : -0.002,
+      size: Math.random() * 1.5 + 0.3,
+      speedX: (Math.random() - 0.5) * 0.15,
+      speedY: -Math.random() * 0.3 - 0.05,
+      opacity: Math.random() * 0.25,
+      fadeDir: Math.random() > 0.5 ? 0.001 : -0.001,
     });
 
     const init = () => {
       resize();
-      particles = Array.from({ length: 40 }, createParticle);
+      particles = Array.from({ length: 20 }, createParticle);
     };
 
     const animate = () => {
@@ -50,7 +50,7 @@ export default function FloatingParticles() {
         p.y += p.speedY;
         p.opacity += p.fadeDir;
 
-        if (p.opacity <= 0 || p.opacity >= 0.5) p.fadeDir *= -1;
+        if (p.opacity <= 0 || p.opacity >= 0.3) p.fadeDir *= -1;
         if (p.y < -10) {
           p.y = canvas.height + 10;
           p.x = Math.random() * canvas.width;
@@ -58,7 +58,7 @@ export default function FloatingParticles() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(201, 169, 110, ${Math.max(0, p.opacity)})`;
+        ctx.fillStyle = `rgba(220, 190, 140, ${Math.max(0, p.opacity)})`;
         ctx.fill();
       });
 
@@ -79,7 +79,7 @@ export default function FloatingParticles() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-[1]"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.4 }}
     />
   );
 }
