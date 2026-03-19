@@ -92,6 +92,7 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
       setImagePreview(null);
       setRelationship("Family");
       setSuccess(true);
+      sessionStorage.setItem("tributeSubmitted", "true");
 
       if (!sessionStorage.getItem("donateAfterGuestbook")) {
         sessionStorage.setItem("donateAfterGuestbook", "true");
