@@ -1,30 +1,29 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { siteConfig } from "@/data/siteConfig";
 
 declare global {
   interface Window {
-    __guestbookTimerStarted?: boolean;
+    __donateTimerStarted?: boolean;
   }
 }
 
 export default function DonatePopup() {
   const [isVisible, setIsVisible] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.__guestbookTimerStarted) return;
-    if (sessionStorage.getItem("guestbookPopupShown")) return;
+    if (window.__donateTimerStarted) return;
+    if (sessionStorage.getItem("donatePopupShown")) return;
 
-    window.__guestbookTimerStarted = true;
+    window.__donateTimerStarted = true;
 
     const timer = setTimeout(() => {
-      if (!sessionStorage.getItem("guestbookPopupShown")) {
+      if (!sessionStorage.getItem("donatePopupShown")) {
         setIsVisible(true);
-        sessionStorage.setItem("guestbookPopupShown", "true");
+        sessionStorage.setItem("donatePopupShown", "true");
       }
     }, 60000);
 
@@ -32,11 +31,6 @@ export default function DonatePopup() {
   }, []);
 
   const handleClose = () => setIsVisible(false);
-
-  const handleGoToGuestbook = () => {
-    setIsVisible(false);
-    router.push("/tributes");
-  };
 
   return (
     <AnimatePresence>
@@ -68,21 +62,29 @@ export default function DonatePopup() {
 
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="h-px w-8 bg-gold/15" />
-              <span className="text-gold/30 text-xs">✦</span>
+              <span className="text-gold/20 text-lg">✝</span>
               <div className="h-px w-8 bg-gold/15" />
             </div>
 
             <h3 className="font-serif text-2xl text-text-bright font-light tracking-wider mb-3">
-              Share a Memory
+              Support the Family
             </h3>
             <p className="text-text-body text-sm leading-relaxed mb-8">
-              Leave a message for the family — a memory, a story, or words of comfort. Your words mean the world.
+              Every contribution helps during this difficult time. Your generosity is deeply appreciated by the family.
             </p>
-            <button
-              onClick={handleGoToGuestbook}
+            <a
+              href={siteConfig.paystackLink}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block text-[11px] tracking-[2px] uppercase px-8 py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300"
             >
-              Write a Message
+              Donate to the Family
+            </a>
+            <button
+              onClick={handleClose}
+              className="block mx-auto mt-4 text-text-muted/40 text-[10px] uppercase tracking-[2px] hover:text-text-muted transition-colors"
+            >
+              Maybe later
             </button>
           </motion.div>
         </motion.div>
