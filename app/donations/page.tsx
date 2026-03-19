@@ -31,7 +31,7 @@ export default function DonationsPage() {
           <h3 className="font-serif text-2xl text-text-bright font-light tracking-wider mb-3">
             Every Contribution Matters
           </h3>
-          <p className="text-text-body text-sm leading-relaxed mb-8 max-w-md mx-auto">
+          <p className="text-text-body text-base leading-relaxed mb-8 max-w-md mx-auto">
             Your generous donation will help the family of {siteConfig.name} during
             this period. No amount is too small — every contribution is deeply appreciated.
           </p>
@@ -47,7 +47,7 @@ export default function DonationsPage() {
             />
           </div>
 
-          <p className="text-text-muted/40 text-[10px] mt-6 tracking-wider uppercase">
+          <p className="text-text-muted/40 text-xs mt-6 tracking-wider uppercase">
             Secured by Paystack
           </p>
         </div>

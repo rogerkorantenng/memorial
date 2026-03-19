@@ -42,7 +42,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 0.4 }}
-          className="text-gold/40 text-[10px] font-sans uppercase tracking-[5px] mb-8"
+          className="text-gold/70 text-xs sm:text-[10px] font-sans uppercase tracking-[5px] mb-8"
         >
           In Loving Memory
         </motion.p>
@@ -83,13 +83,13 @@ export default function Hero() {
         >
           <div className="flex items-center justify-center gap-6 sm:gap-10 text-text-body/70">
             <div className="text-center">
-              <p className="text-gold/30 text-[9px] uppercase tracking-[3px] mb-1">Sunrise</p>
-              <p className="font-serif text-sm sm:text-base text-text-primary/70">{siteConfig.birthDate}</p>
+              <p className="text-gold/60 text-xs sm:text-[9px] uppercase tracking-[3px] mb-1">Sunrise</p>
+              <p className="font-serif text-base sm:text-lg text-text-primary">{siteConfig.birthDate}</p>
             </div>
-            <span className="text-gold/20 text-lg">&mdash;</span>
+            <span className="text-gold/40 text-lg">&mdash;</span>
             <div className="text-center">
-              <p className="text-gold/30 text-[9px] uppercase tracking-[3px] mb-1">Sunset</p>
-              <p className="font-serif text-sm sm:text-base text-text-primary/70">{siteConfig.deathDate}</p>
+              <p className="text-gold/60 text-xs sm:text-[9px] uppercase tracking-[3px] mb-1">Sunset</p>
+              <p className="font-serif text-base sm:text-lg text-text-primary">{siteConfig.deathDate}</p>
             </div>
           </div>
         </motion.div>
@@ -99,7 +99,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="font-serif text-base sm:text-lg italic text-text-body/40 max-w-md mx-auto leading-relaxed font-light"
+          className="font-serif text-lg sm:text-xl italic text-text-body max-w-md mx-auto leading-relaxed font-light"
         >
           &ldquo;{siteConfig.quote}&rdquo;
         </motion.p>

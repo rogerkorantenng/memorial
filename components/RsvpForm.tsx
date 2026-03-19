@@ -48,13 +48,13 @@ export default function RsvpForm() {
   };
 
   const inputClass =
-    "w-full bg-bg-deep/50 border border-bg-subtle/50 rounded-xl px-4 py-3 text-text-primary text-sm font-sans focus:outline-none focus:border-gold/30 transition-colors duration-300 placeholder:text-text-muted/40";
+    "w-full bg-bg-deep/50 border border-bg-subtle/50 rounded-xl px-4 py-3 text-text-primary text-base font-sans focus:outline-none focus:border-gold/30 transition-colors duration-300 placeholder:text-text-muted/40";
 
   return (
     <form onSubmit={handleSubmit} className="glass-card p-6 sm:p-8">
       <div className="space-y-5">
         <div>
-          <label htmlFor="rsvp-name" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+          <label htmlFor="rsvp-name" className="block text-text-muted text-xs uppercase tracking-[2px] mb-2">
             Full Name *
           </label>
           <input
@@ -70,7 +70,7 @@ export default function RsvpForm() {
         </div>
 
         <div>
-          <label htmlFor="rsvp-phone" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+          <label htmlFor="rsvp-phone" className="block text-text-muted text-xs uppercase tracking-[2px] mb-2">
             Phone Number
           </label>
           <input
@@ -85,7 +85,7 @@ export default function RsvpForm() {
         </div>
 
         <div>
-          <label htmlFor="rsvp-count" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+          <label htmlFor="rsvp-count" className="block text-text-muted text-xs uppercase tracking-[2px] mb-2">
             Number Attending *
           </label>
           <select
@@ -101,7 +101,7 @@ export default function RsvpForm() {
         </div>
 
         <div>
-          <label htmlFor="rsvp-message" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+          <label htmlFor="rsvp-message" className="block text-text-muted text-xs uppercase tracking-[2px] mb-2">
             Additional Notes
           </label>
           <textarea
@@ -126,7 +126,7 @@ export default function RsvpForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="text-[11px] tracking-[2px] uppercase px-8 py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 disabled:opacity-40"
+          className="text-sm tracking-[2px] uppercase px-8 py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 disabled:opacity-40"
         >
           {isSubmitting ? "Sending..." : "Confirm RSVP"}
         </button>

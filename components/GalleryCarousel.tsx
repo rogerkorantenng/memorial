@@ -22,7 +22,7 @@ export default function GalleryCarousel() {
         <div className="max-w-content mx-auto">
           <div className="flex items-center justify-between mb-10">
             <div>
-              <p className="text-gold/40 text-[10px] font-sans uppercase tracking-[4px] mb-2">Memories</p>
+              <p className="text-gold/70 text-xs font-sans uppercase tracking-[4px] mb-2">Memories</p>
               <h2 className="font-serif text-2xl sm:text-3xl font-light text-text-bright tracking-wider">Gallery</h2>
             </div>
             <Link href="/gallery" className="view-all-link">
@@ -54,7 +54,7 @@ export default function GalleryCarousel() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
                   <div className="absolute bottom-0 inset-x-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <p className="text-white/90 text-xs font-sans tracking-wide">{item.caption}</p>
+                    <p className="text-white/90 text-sm font-sans tracking-wide">{item.caption}</p>
                   </div>
                 </div>
               </SwiperSlide>

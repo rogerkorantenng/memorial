@@ -26,7 +26,7 @@ export default async function GuestbookPreview() {
         <div className="max-w-content mx-auto">
           <div className="flex items-center justify-between mb-10">
             <div>
-              <p className="text-gold/40 text-[10px] font-sans uppercase tracking-[4px] mb-2">Messages</p>
+              <p className="text-gold/70 text-xs font-sans uppercase tracking-[4px] mb-2">Messages</p>
               <h2 className="font-serif text-2xl sm:text-3xl font-light text-text-bright tracking-wider">Tributes</h2>
             </div>
             <Link href="/tributes" className="view-all-link">
@@ -37,7 +37,7 @@ export default async function GuestbookPreview() {
           <div className="grid gap-4 sm:grid-cols-3">
             {entries.map((entry) => (
               <div key={entry.id} className="glass-card p-6 flex flex-col">
-                <p className="font-serif text-sm text-text-primary/80 italic leading-relaxed flex-1 mb-4">
+                <p className="font-serif text-base text-text-primary italic leading-relaxed flex-1 mb-4">
                   &ldquo;{entry.message}&rdquo;
                 </p>
                 <div className="flex items-center gap-3 pt-4 border-t border-gold/5">
@@ -45,8 +45,8 @@ export default async function GuestbookPreview() {
                     {entry.name.charAt(0).toUpperCase()}
                   </div>
                   <div>
-                    <p className="text-gold/80 text-xs font-medium tracking-wide">{entry.name}</p>
-                    <p className="text-text-muted text-[10px] tracking-wider uppercase">
+                    <p className="text-gold/80 text-sm font-medium tracking-wide">{entry.name}</p>
+                    <p className="text-text-muted text-xs tracking-wider uppercase">
                       {entry.relationship} &middot; {timeAgo(entry.created_at)}
                     </p>
                   </div>

@@ -111,7 +111,7 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
   };
 
   const inputClass =
-    "w-full bg-bg-deep/50 border border-bg-subtle/50 rounded-xl px-4 py-3 text-text-primary text-sm font-sans focus:outline-none focus:border-gold/30 transition-colors duration-300 placeholder:text-text-muted/40";
+    "w-full bg-bg-deep/50 border border-bg-subtle/50 rounded-xl px-4 py-3 text-text-primary text-base font-sans focus:outline-none focus:border-gold/30 transition-colors duration-300 placeholder:text-text-muted/40";
 
   return (
     <>
@@ -126,14 +126,14 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
 
         <div className="space-y-5">
           <div>
-            <label htmlFor="name" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+            <label htmlFor="name" className="block text-text-muted text-xs uppercase tracking-[2px] mb-2">
               Full Name *
             </label>
             <input id="name" type="text" required maxLength={100} value={name} onChange={(e) => setName(e.target.value)} className={inputClass} placeholder="Enter your full name" />
           </div>
 
           <div>
-            <label htmlFor="relationship" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+            <label htmlFor="relationship" className="block text-text-muted text-xs uppercase tracking-[2px] mb-2">
               Relationship to {siteConfig.name}
             </label>
             <select id="relationship" value={relationship} onChange={(e) => setRelationship(e.target.value)} className={inputClass}>
@@ -144,24 +144,24 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
           </div>
 
           <div>
-            <label htmlFor="message" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+            <label htmlFor="message" className="block text-text-muted text-xs uppercase tracking-[2px] mb-2">
               Tribute Message *
             </label>
             <textarea id="message" required maxLength={2000} rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className={`${inputClass} resize-none`} placeholder="Share a tribute message..." />
-            <p className="text-text-muted/30 text-[10px] mt-2 text-right tracking-wider">
+            <p className="text-text-muted/30 text-xs mt-2 text-right tracking-wider">
               {message.length} / 2000
             </p>
           </div>
 
           <div>
-            <label htmlFor="experience" className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+            <label htmlFor="experience" className="block text-text-muted text-xs uppercase tracking-[2px] mb-2">
               Personal Experience
             </label>
             <textarea id="experience" maxLength={2000} rows={3} value={personalExperience} onChange={(e) => setPersonalExperience(e.target.value)} className={`${inputClass} resize-none`} placeholder="Share a personal experience or memory with him..." />
           </div>
 
           <div>
-            <label className="block text-text-muted text-[10px] uppercase tracking-[2px] mb-2">
+            <label className="block text-text-muted text-xs uppercase tracking-[2px] mb-2">
               Upload a Photo (optional)
             </label>
             <input
@@ -208,10 +208,10 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
                 <svg className="w-5 h-5 text-gold/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                <span className="text-text-muted/50 text-xs">Click to upload a photo with him</span>
+                <span className="text-text-muted/50 text-sm">Click to upload a photo with him</span>
               </button>
             )}
-            <p className="text-text-muted/30 text-[10px] mt-2 tracking-wider">
+            <p className="text-text-muted/30 text-xs mt-2 tracking-wider">
               JPEG, PNG, WebP or GIF &middot; Max 5MB
             </p>
           </div>
@@ -224,7 +224,7 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="text-[11px] tracking-[2px] uppercase px-8 py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 disabled:opacity-40"
+            className="text-sm tracking-[2px] uppercase px-8 py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 disabled:opacity-40"
           >
             {isSubmitting ? (uploadingImage ? "Uploading image..." : "Sending...") : "Submit Tribute"}
           </button>
@@ -270,11 +270,12 @@ export default function GuestbookForm({ onEntryAdded }: GuestbookFormProps) {
               <p className="text-text-body text-sm leading-relaxed mb-8">
                 Your tribute means so much to the family. If you&apos;d like to support them further, every contribution helps.
               </p>
+
               <a
                 href={siteConfig.paystackLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block text-[11px] tracking-[2px] uppercase px-8 py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300"
+                className="inline-block text-sm tracking-[2px] uppercase px-8 py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300"
               >
                 Donate to the Family
               </a>

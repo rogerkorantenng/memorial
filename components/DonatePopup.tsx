@@ -99,12 +99,12 @@ export default function DonatePopup() {
                 <h3 className="font-serif text-xl sm:text-2xl text-text-bright font-light tracking-wider mb-2 sm:mb-3">
                   Leave a Tribute
                 </h3>
-                <p className="text-text-body text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8">
+                <p className="text-text-body text-sm sm:text-base leading-relaxed mb-6 sm:mb-8">
                   Share a memory, story, or words of comfort for the family of {siteConfig.name}.
                 </p>
                 <button
                   onClick={handleGoToTributes}
-                  className="text-[10px] sm:text-[11px] tracking-[2px] uppercase px-6 sm:px-8 py-2.5 sm:py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 cursor-pointer"
+                  className="text-xs sm:text-sm tracking-[2px] uppercase px-6 sm:px-8 py-2.5 sm:py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 cursor-pointer"
                 >
                   Write a Tribute
                 </button>
@@ -114,7 +114,7 @@ export default function DonatePopup() {
                 <h3 className="font-serif text-xl sm:text-2xl text-text-bright font-light tracking-wider mb-2 sm:mb-3">
                   Support the Family
                 </h3>
-                <p className="text-text-body text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8">
+                <p className="text-text-body text-sm sm:text-base leading-relaxed mb-6 sm:mb-8">
                   Every contribution helps during this difficult time. Your generosity is deeply appreciated.
                 </p>
                 <a
@@ -122,7 +122,7 @@ export default function DonatePopup() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleClose}
-                  className="inline-block text-[10px] sm:text-[11px] tracking-[2px] uppercase px-6 sm:px-8 py-2.5 sm:py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 cursor-pointer"
+                  className="inline-block text-xs sm:text-sm tracking-[2px] uppercase px-6 sm:px-8 py-2.5 sm:py-3 bg-accent/80 text-white rounded-full hover:bg-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 cursor-pointer"
                 >
                   Donate to the Family
                 </a>
@@ -131,7 +131,7 @@ export default function DonatePopup() {
 
             <button
               onClick={handleClose}
-              className="block mx-auto mt-3 sm:mt-4 text-text-muted/40 text-[9px] sm:text-[10px] uppercase tracking-[2px] hover:text-text-muted transition-colors cursor-pointer"
+              className="block mx-auto mt-3 sm:mt-4 text-text-muted/40 text-xs uppercase tracking-[2px] hover:text-text-muted transition-colors cursor-pointer"
             >
               Maybe later
             </button>

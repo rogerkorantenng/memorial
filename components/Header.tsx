@@ -46,7 +46,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-text-muted text-[10px] tracking-[2px] uppercase hover:text-text-body transition-colors duration-300"
+              className="text-text-muted text-xs tracking-[2px] uppercase hover:text-text-body transition-colors duration-300"
             >
               {link.label}
             </Link>
@@ -55,7 +55,7 @@ export default function Header() {
             href={siteConfig.paystackLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[10px] tracking-[2px] uppercase px-4 py-1.5 border border-accent/40 text-accent/80 hover:bg-accent/10 hover:text-accent rounded-full transition-all duration-300 cursor-pointer"
+            className="text-xs tracking-[2px] uppercase px-4 py-1.5 border border-accent/40 text-accent/80 hover:bg-accent/10 hover:text-accent rounded-full transition-all duration-300 cursor-pointer"
           >
             Donate
           </a>
@@ -67,7 +67,7 @@ export default function Header() {
             href={siteConfig.paystackLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[9px] tracking-[2px] uppercase px-3 py-1 border border-accent/40 text-accent/80 rounded-full cursor-pointer"
+            className="text-xs tracking-[2px] uppercase px-3 py-1.5 border border-accent/40 text-accent/80 rounded-full cursor-pointer"
           >
             Donate
           </a>
@@ -102,7 +102,7 @@ export default function Header() {
                 >
                   <Link
                     href={link.href}
-                    className="block text-text-muted text-[10px] tracking-[2px] uppercase hover:text-text-body transition-colors"
+                    className="block text-text-muted text-sm tracking-[2px] uppercase hover:text-text-body transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.label}

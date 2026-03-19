@@ -74,20 +74,20 @@ export default function GuestbookList() {
                     {entry.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-3 text-[11px]">
-                      <span className="text-gold/70 font-medium tracking-wide">{entry.name}</span>
+                    <div className="flex items-center gap-2 mb-3 text-sm">
+                      <span className="text-gold font-medium tracking-wide">{entry.name}</span>
                       <span className="text-text-muted/30">&middot;</span>
                       <span className="text-text-muted tracking-wider uppercase">{entry.relationship}</span>
                       <span className="text-text-muted/30">&middot;</span>
                       <span className="text-text-muted">{timeAgo(entry.created_at)}</span>
                     </div>
-                    <p className="font-serif text-sm text-text-primary/80 italic leading-relaxed mb-2">
+                    <p className="font-serif text-base text-text-primary italic leading-relaxed mb-2">
                       &ldquo;{entry.message}&rdquo;
                     </p>
                     {entry.personal_experience && (
                       <div className="mt-3 pt-3 border-t border-gold/5">
-                        <p className="text-[10px] text-gold/40 uppercase tracking-[2px] mb-1">Personal Experience</p>
-                        <p className="text-text-body text-xs leading-relaxed">{entry.personal_experience}</p>
+                        <p className="text-xs text-gold/40 uppercase tracking-[2px] mb-1">Personal Experience</p>
+                        <p className="text-text-body text-sm leading-relaxed">{entry.personal_experience}</p>
                       </div>
                     )}
                   </div>
@@ -106,7 +106,7 @@ export default function GuestbookList() {
               <button
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page === 1}
-                className="text-[10px] tracking-[2px] uppercase px-5 py-2 border border-gold/10 text-text-muted rounded-full disabled:opacity-20 hover:border-gold/30 hover:text-gold transition-all duration-300"
+                className="text-xs tracking-[2px] uppercase px-5 py-2 border border-gold/10 text-text-muted rounded-full disabled:opacity-20 hover:border-gold/30 hover:text-gold transition-all duration-300"
               >
                 Previous
               </button>
@@ -116,7 +116,7 @@ export default function GuestbookList() {
               <button
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
-                className="text-[10px] tracking-[2px] uppercase px-5 py-2 border border-gold/10 text-text-muted rounded-full disabled:opacity-20 hover:border-gold/30 hover:text-gold transition-all duration-300"
+                className="text-xs tracking-[2px] uppercase px-5 py-2 border border-gold/10 text-text-muted rounded-full disabled:opacity-20 hover:border-gold/30 hover:text-gold transition-all duration-300"
               >
                 Next
               </button>

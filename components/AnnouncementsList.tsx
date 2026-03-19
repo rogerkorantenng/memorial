@@ -65,15 +65,15 @@ export default function AnnouncementsList() {
       {announcements.map((a) => (
         <div key={a.id} className="glass-card p-6 sm:p-8">
           <div className="flex items-start justify-between gap-4 mb-3">
-            <h3 className="font-serif text-lg text-text-bright font-light">{a.title}</h3>
+            <h3 className="font-serif text-xl text-text-bright font-light">{a.title}</h3>
             {a.pinned && (
-              <span className="text-[9px] tracking-[2px] uppercase px-2 py-0.5 rounded-full border border-gold/20 text-gold/60 flex-shrink-0">
+              <span className="text-xs tracking-[2px] uppercase px-2 py-0.5 rounded-full border border-gold/20 text-gold/60 flex-shrink-0">
                 Pinned
               </span>
             )}
           </div>
-          <p className="text-text-muted text-[10px] uppercase tracking-[2px] mb-4">{formatDate(a.date)}</p>
-          <p className="text-text-body text-sm leading-relaxed whitespace-pre-line">{a.content}</p>
+          <p className="text-text-muted text-xs uppercase tracking-[2px] mb-4">{formatDate(a.date)}</p>
+          <p className="text-text-body text-base leading-relaxed whitespace-pre-line">{a.content}</p>
         </div>
       ))}
     </div>

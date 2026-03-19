@@ -10,19 +10,19 @@
 :root {
   --bg-deep: #0a0806;
   --bg-primary: #110e0b;
-  --bg-card: #1a1510;
-  --bg-elevated: #231d16;
-  --bg-subtle: #2e2620;
+  --bg-card: #1f1914;
+  --bg-elevated: #2a231b;
+  --bg-subtle: #362e25;
   --gold: #c9a96e;
   --gold-light: #e2c992;
   --gold-dim: rgba(201, 169, 110, 0.15);
   --burgundy: #5c2028;
   --burgundy-soft: rgba(92, 32, 40, 0.3);
   --accent: #2d8a4e;
-  --text-bright: #f5efe6;
-  --text-primary: #e8dcc8;
-  --text-body: #a89a86;
-  --text-muted: #6b5e50;
+  --text-bright: #ffffff;
+  --text-primary: #f5edd8;
+  --text-body: #e6d9c3;
+  --text-muted: #bfae96;
 }
 
 @layer base {
@@ -119,7 +119,7 @@
 
   .section-heading .subtitle {
     font-family: var(--font-cormorant), serif;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     font-style: italic;
     color: var(--text-muted);
     font-weight: 300;
@@ -174,7 +174,7 @@
   /* View all link */
   .view-all-link {
     font-family: var(--font-outfit), sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--gold);
