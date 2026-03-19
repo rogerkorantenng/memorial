@@ -39,9 +39,11 @@ export default function RootLayout({
     <html lang="en" className={`${cormorant.variable} ${outfit.variable}`}>
       <body>
         <FloatingParticles />
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <div className="relative z-10">
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </div>
         <DonatePopup />
       </body>
     </html>
