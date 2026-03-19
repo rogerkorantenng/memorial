@@ -32,9 +32,9 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, delay: 0.2 }}
-          className="mb-8"
+          className="mb-3 sm:mb-8"
         >
-          <span className="text-gold/25 text-4xl leading-none">&#10013;</span>
+          <span className="text-gold/25 text-2xl sm:text-4xl leading-none">&#10013;</span>
         </motion.div>
 
         {/* Sunrise label */}
@@ -42,7 +42,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 0.4 }}
-          className="text-gold/70 text-xs sm:text-[10px] font-sans uppercase tracking-[5px] mb-8"
+          className="text-gold/70 text-xs sm:text-[10px] font-sans uppercase tracking-[5px] mb-3 sm:mb-8"
         >
           In Loving Memory
         </motion.p>
@@ -53,7 +53,7 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
         >
-          <div className="w-44 h-44 sm:w-56 sm:h-56 mx-auto mb-8 rounded-full overflow-hidden relative portrait-glow border-2 border-gold/15">
+          <div className="w-36 h-36 sm:w-56 sm:h-56 mx-auto mb-4 sm:mb-8 rounded-full overflow-hidden relative portrait-glow border-2 border-gold/15">
             <Image
               src={siteConfig.portraitImage}
               alt={siteConfig.name}
@@ -69,7 +69,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-text-bright uppercase tracking-[4px] sm:tracking-[6px] mb-6"
+          className="font-serif text-2xl sm:text-4xl md:text-5xl font-light text-text-bright uppercase tracking-[3px] sm:tracking-[6px] mb-4 sm:mb-6"
         >
           {siteConfig.name}
         </motion.h1>
