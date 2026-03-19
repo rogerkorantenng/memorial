@@ -19,7 +19,7 @@ export default function Biography() {
               {biography.map((paragraph, index) => (
                 <p
                   key={index}
-                  className="text-text-body text-base sm:text-lg leading-[1.9] mb-6 last:mb-0 first:text-text-primary"
+                  className="text-white text-base sm:text-lg leading-[1.9] mb-6 last:mb-0"
                 >
                   {paragraph}
                 </p>
