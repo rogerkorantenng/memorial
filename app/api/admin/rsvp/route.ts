@@ -11,23 +11,36 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Invalid password" }, { status: 401 });
   }
 
-  const { data, error } = await supabaseServer
+  // Fetch RSVPs
+  const { data: rsvpData, error: rsvpError } = await supabaseServer
     .from("rsvp_entries")
     .select("id, full_name, phone, number_attending, message, created_at")
     .order("created_at", { ascending: false });
 
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  if (rsvpError) {
+    return NextResponse.json({ error: rsvpError.message }, { status: 500 });
   }
 
-  const totalAttending = (data || []).reduce(
+  // Fetch Tributes
+  const { data: tributeData, error: tributeError } = await supabaseServer
+    .from("guestbook_entries")
+    .select("id, name, relationship, message, personal_experience, image_url, created_at")
+    .order("created_at", { ascending: false });
+
+  if (tributeError) {
+    return NextResponse.json({ error: tributeError.message }, { status: 500 });
+  }
+
+  const totalAttending = (rsvpData || []).reduce(
     (sum, r) => sum + r.number_attending,
     0
   );
 
   return NextResponse.json({
-    entries: data,
-    total: data?.length || 0,
+    rsvpEntries: rsvpData,
+    tributeEntries: tributeData,
+    totalRsvp: rsvpData?.length || 0,
+    totalTributes: tributeData?.length || 0,
     totalAttending,
   });
 }

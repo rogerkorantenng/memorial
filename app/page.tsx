@@ -4,6 +4,7 @@ import Biography from "@/components/Biography";
 import GalleryCarousel from "@/components/GalleryCarousel";
 import GuestbookPreview from "@/components/GuestbookPreview";
 import EventCard from "@/components/EventCard";
+import RsvpForm from "@/components/RsvpForm";
 import ScrollFadeIn from "@/components/ScrollFadeIn";
 import { events } from "@/data/events";
 
@@ -40,6 +41,20 @@ export default function Home() {
           </section>
         </ScrollFadeIn>
       )}
+
+      {/* RSVP */}
+      <ScrollFadeIn>
+        <section className="py-12 sm:py-16 px-4">
+          <div className="max-w-content mx-auto max-w-2xl">
+            <div className="section-heading mb-6">
+              <h2>RSVP</h2>
+              <div className="divider"><span>✝</span></div>
+              <p className="subtitle">Let us know you are coming</p>
+            </div>
+            <RsvpForm />
+          </div>
+        </section>
+      </ScrollFadeIn>
 
       {/* Map — last section */}
       <ScrollFadeIn>
