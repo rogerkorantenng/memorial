@@ -7,7 +7,7 @@ export default function Biography() {
       <section className="py-12 sm:py-16 px-4 relative">
         <div className="max-w-content mx-auto">
           <div className="section-heading">
-            <h2>A Life Remembered</h2>
+            <h2>A HERO HAS FALLEN</h2>
             <div className="divider"><span>✦</span></div>
           </div>
 
