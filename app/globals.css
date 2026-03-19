@@ -20,9 +20,9 @@
   --burgundy-soft: rgba(92, 32, 40, 0.3);
   --accent: #2d8a4e;
   --text-bright: #ffffff;
-  --text-primary: #f5edd8;
-  --text-body: #e6d9c3;
-  --text-muted: #bfae96;
+  --text-primary: #f7f0e3;
+  --text-body: #efe4d0;
+  --text-muted: #d1c2a8;
 }
 
 @layer base {
