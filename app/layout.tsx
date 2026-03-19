@@ -21,12 +21,28 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://stanakai.vercel.app"),
   title: siteConfig.siteTitle,
   description: siteConfig.siteDescription,
   openGraph: {
     title: siteConfig.siteTitle,
     description: siteConfig.siteDescription,
-    images: [{ url: siteConfig.portraitImage }],
+    type: "website",
+    url: "https://stanakai.vercel.app",
+    images: [
+      {
+        url: "/portrait.jpg",
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.siteTitle,
+    description: siteConfig.siteDescription,
+    images: ["/portrait.jpg"],
   },
 };
 

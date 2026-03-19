@@ -62,7 +62,14 @@ export default function Header() {
         </nav>
 
         {/* Mobile */}
-        <div className="flex items-center gap-3 lg:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
+          <Link
+            href="/tributes"
+            className="text-xs tracking-[2px] uppercase px-3 py-1.5 border border-gold/40 text-gold/80 rounded-full cursor-pointer"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Tributes
+          </Link>
           <a
             href={siteConfig.paystackLink}
             target="_blank"
