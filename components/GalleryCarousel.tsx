@@ -18,7 +18,7 @@ export default function GalleryCarousel() {
 
   return (
     <ScrollFadeIn>
-      <section className="py-24 sm:py-32 px-4">
+      <section className="py-12 sm:py-16 px-4">
         <div className="max-w-content mx-auto">
           <div className="flex items-center justify-between mb-10">
             <div>

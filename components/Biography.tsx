@@ -4,7 +4,7 @@ import ScrollFadeIn from "@/components/ScrollFadeIn";
 export default function Biography() {
   return (
     <ScrollFadeIn>
-      <section className="py-24 sm:py-32 px-4 relative">
+      <section className="py-12 sm:py-16 px-4 relative">
         <div className="max-w-content mx-auto">
           <div className="section-heading">
             <h2>A Life Remembered</h2>

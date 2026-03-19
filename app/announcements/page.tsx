@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function AnnouncementsPage() {
   return (
-    <section className="py-24 sm:py-32 px-4 pt-32">
+    <section className="py-12 sm:py-16 px-4 pt-32">
       <div className="max-w-2xl mx-auto">
         <div className="section-heading mb-12">
           <h1>Announcements</h1>
