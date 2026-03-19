@@ -32,7 +32,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, delay: 0.2 }}
-          className="mb-3 sm:mb-8"
+          className="mb-3 sm:mb-8 mt-12 sm:mt-20"
         >
           <span className="text-gold/25 text-2xl sm:text-4xl leading-none">&#10013;</span>
         </motion.div>
