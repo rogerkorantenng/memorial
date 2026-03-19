@@ -43,8 +43,8 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
+          <DonatePopup />
         </div>
-        <DonatePopup />
       </body>
     </html>
   );
