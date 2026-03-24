@@ -19,7 +19,7 @@ export default function AnnouncementsPage() {
         <div className="section-heading mb-12">
           <h1>Announcements</h1>
           <div className="divider"><span>✦</span></div>
-          <p className="subtitle">Funeral notices and updates</p>
+          <p className="subtitle">Funeral events and schedule</p>
         </div>
         <AnnouncementsList />
       </div>
